@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0;
+  color: #e8f1fb;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #0d2b4d 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #0a2742 0%, transparent 55%),
+    #050f1e;
+  background-attachment: fixed;
+  font-variant-numeric: tabular-nums;
+}
+select option { background: #0e2540; color: #e8f1fb; }
+input[type='date']::-webkit-calendar-picker-indicator { filter: invert(.8); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #1d4670; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .inp { @apply w-full rounded-lg border border-navy-600 bg-navy-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-turq-400 focus:ring-1 focus:ring-turq-400; }
+  .panel-box { @apply rounded-xl border border-turq-700/70 bg-navy-850/80 p-3 shadow-card; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-ghost { @apply btn border border-navy-600 bg-navy-800 text-slate-200 hover:border-turq-500; }
+  .btn-green { @apply btn border border-tech-500 bg-tech-900/60 text-white hover:bg-tech-800; }
+  .btn-red { @apply btn border border-alert-500 bg-alert-900/50 text-white hover:bg-alert-700/60; }
+}
+
+/* El panel de detalle se adapta a SU ancho (no al de la ventana). */
+.detalle { container-type: inline-size; }
+@container (max-width: 470px) {
+  .mov-tipo, .tab-ico { display: none; }
+  .tab-btn { font-size: 12.5px; }
+  .mov-table { font-size: 12px; }
+  .mov-table th, .mov-table td { padding-left: 4px; padding-right: 4px; }
+  .mov-cat { max-width: 84px; }
+  .mov-concepto { max-width: 96px; }
+}
+/* Portátiles con el detalle abierto: 4 columnas más compactas. */
+@media (min-width: 1280px) and (max-width: 1499px) {
+  .cgm-compacto .mc-titulo { font-size: 16px; }
+  .cgm-compacto .mc-fila { font-size: 12.5px; gap: 4px; }
+  .cgm-compacto .mc-fila > span:first-child { gap: 5px; }
+  .cgm-compacto .mc-saldo { font-size: 14.5px; padding-left: 8px; padding-right: 8px; }
+  .cgm-compacto .mc-edit { display: none; }
+}
+@container (max-width: 400px) {
+  .mov-concepto { max-width: 76px; }
+  .mov-cat { max-width: 68px; }
+}
